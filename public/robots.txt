@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://desertthreads.example.com/sitemap.xml

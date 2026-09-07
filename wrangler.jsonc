@@ -1,0 +1,11 @@
+{
+  "name": "desert-threads",
+  "compatibility_date": "2026-09-01",
+  // Assets-only Worker: no `main` script, no bundler, no npm install.
+  // Everything in ./public is served straight from Cloudflare's edge.
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": true }
+}
