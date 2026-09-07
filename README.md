@@ -51,17 +51,26 @@ There's no install or build step in the job — the action fetches Wrangler itse
 
 It needs two repository secrets:
 
-| Secret | Where it comes from |
-| --- | --- |
-| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → **Create Token** → use the **Edit Cloudflare Workers** template |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard sidebar, or `npx wrangler whoami` |
+| Name | Kind | Where it comes from |
+| --- | --- | --- |
+| `CLOUDFLARE_API_TOKEN` | secret | Cloudflare dashboard → My Profile → API Tokens → **Create Token** → **Edit Cloudflare Workers** template |
+| `CLOUDFLARE_ACCOUNT_ID` | variable | Cloudflare dashboard sidebar, or `npx wrangler whoami` — not sensitive, so a plain variable is fine |
 
-Set them once:
+Note the kinds: the workflow reads the token as `secrets.CLOUDFLARE_API_TOKEN`
+and the account id as `vars.CLOUDFLARE_ACCOUNT_ID`. They are separate namespaces —
+a variable is not readable via `secrets.`, or the other way round.
+
+Both are stored in the **`prod` GitHub environment**, which the deploy job opts
+into with `environment: prod`. Environment secrets are invisible to jobs that
+don't declare the environment, so the `--env prod` flag matters:
 
 ```sh
-gh secret set CLOUDFLARE_API_TOKEN     # paste the token when prompted
-gh secret set CLOUDFLARE_ACCOUNT_ID
+gh secret set   CLOUDFLARE_API_TOKEN  --env prod   # paste the token when prompted
+gh variable set CLOUDFLARE_ACCOUNT_ID --env prod
 ```
+
+Check them with `gh secret list --env prod` (names only, never values). Plain
+`gh secret list` shows repo-level secrets and will look empty — that's expected.
 
 The first successful run creates the Worker; every run after that updates it.
 

@@ -20,6 +20,9 @@ jobs:
     name: Publish to Cloudflare Workers
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # Secrets live in the `prod` environment, so the job has to opt into it —
+    # without this line `secrets.*` resolve to empty strings.
+    environment: prod
     steps:
       - uses: actions/checkout@v7
 
@@ -27,6 +30,7 @@ jobs:
       # assets-only Worker, so there is nothing to build.
       - uses: cloudflare/wrangler-action@v4
         with:
+          # token = environment secret, account id = environment variable
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy
