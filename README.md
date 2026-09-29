@@ -107,8 +107,10 @@ Everything below is invented and needs your real details:
 
 - **Contact** — `(602) 555-0142`, `hello@desertthreads.com`, `1408 N Grand Ave, Phoenix, AZ 85007`. In `index.html` (quote section + footer) and `script.js` (the mailto address).
 - **Pricing** — `$12.00 / $8.25 / $6.40` per-piece tiers and the per-service "from" prices.
-- **Stats** — 16 heads, 12,400 garments, 1,100 logos, 4.9★.
-- **Client names and testimonials** in the Work and Word-around-town sections.
+- **The band under Process** — four craft promises (Punched / Proofed / Trimmed / Sorted).
+  Kept deliberately non-numeric so nothing implies a size the shop isn't.
+- **Client names and testimonials** in the Work and Word-around-town sections, plus the
+  piece counts on each work card.
 - **Work images** — the five cards use CSS gradients with garment silhouettes as
   stand-ins. Swap in photos by replacing `.card-work__art` with an `<img>`, or set
   `background-image` on the `[data-art="…"]` rules in `styles.css`.
