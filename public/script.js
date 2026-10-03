@@ -71,10 +71,10 @@
       '',
       f.get('msg') || ''
     ].join('\n');
-    location.href = 'mailto:hello@desertthreads.com'
+    location.href = 'mailto:desertthreadsemb@gmail.com'
       + '?subject=' + encodeURIComponent('Quote request — ' + (f.get('name') || 'website'))
       + '&body=' + encodeURIComponent(body);
-    ok.textContent = 'Opening your email app with the details filled in. Prefer to talk? (602) 555-0142.';
+    ok.textContent = 'Opening your email app with the details filled in. Prefer to talk? (602) 836-1703.';
     ok.hidden = false;
   });
 
